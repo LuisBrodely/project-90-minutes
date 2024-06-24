@@ -14,15 +14,7 @@ const DashboardPage = () => {
   const buttons = [
     { name: "Mensaje" },
     { name: "Pedidos" },
-    { name: "Devoluciones" },
-    { name: "General" },
-  ];
-
-  const buttons2 = [
-    { name: "Centro de ayuda" },
-    { name: "Ajustes" },
-    { name: "Reclamaciones" },
-    { name: "Sugerencias" },
+    { name: "Membresías" },
   ];
 
   const renderSection = () => {
@@ -48,11 +40,6 @@ const DashboardPage = () => {
         </div>
         <CardSections
           buttons={buttons}
-          activeButton={activeButton}
-          onButtonClick={setActiveButton}
-        />
-        <CardSections
-          buttons={buttons2}
           activeButton={activeButton}
           onButtonClick={setActiveButton}
         />

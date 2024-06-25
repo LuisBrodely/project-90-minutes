@@ -7,7 +7,7 @@ const PackageTrackingPage = () => {
     <div className="flex flex-row justify-center mt-8 ">
       <div className="flex flex-col w-[1144px] h-[673px]">
         {/* BREADCRUMB */}
-        <span className="text-neutral-600 text-2xl font-semibold font-['Inter'] mt-[50px]">
+        <span className="text-neutral-600 text-2xl font-semibold mt-[50px]">
           | Monitoreo de paquete
         </span>
         <TimeTracking />

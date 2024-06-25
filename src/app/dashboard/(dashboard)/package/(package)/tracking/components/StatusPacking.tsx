@@ -1,4 +1,28 @@
-export const StatusPacking = () => {
+import { Package } from '../interfaces/package';
+
+interface PackageItemProps{
+  pkg: Package;
+}
+
+export const StatusPacking: React.FC<PackageItemProps> = ({ pkg }) => {
+
+  const getStatusMessage = (status: string): string => {
+    switch (status) {
+      case 'Re-programado':
+        return 'El paquete ha sido reprogramado por paquetería.';
+      case 'En tránsito':
+        return 'El paquete está en tránsito hacia su destino.';
+      case 'Entregado':
+        return 'El paquete ha sido entregado correctamente.';
+      case 'Cancelado':
+        return 'El envío del paquete ha sido cancelado.';
+      default:
+        return '';
+    }
+  };
+
+
+
   return (
     <div className="flex-col w-[1144px] h-[225px] bg-white shadow border border-zinc-100 mt-[30px]">
       <div className="flex-col mt-[20px] ml-[30px] justify-start items-start gap-[5px] inline-flex">
@@ -6,15 +30,13 @@ export const StatusPacking = () => {
           90Minutos [Tipo de membresia] envió.
         </p>
         <p className="text-zinc-800 text-base font-semibold">
-          Numero de identificación{" "}
-          <span className="text-neutral-500 text-base font-normal">
-            [Numero de ID]
-          </span>
+          Numero de identificación {" "}
+          <span className="text-neutral-500 text-base font-normal">{pkg.id}</span>
         </p>
         <p className="text-zinc-800 text-base font-semibold">
           Envío a{" "}
           <span className="text-zinc-800 text-base font-normal">
-            [Nombre de persona], [Numero Telefónico], [Dirección]
+            [Nombre de persona], [Numero Telefónico], {pkg.destiny}
           </span>
         </p>
       </div>
@@ -26,11 +48,13 @@ export const StatusPacking = () => {
         </div>
         <div className="flex-col ml-[15px]">
           <p className="text-black text-base font-semibold">
-            Paquete entregado
+            Paquete {pkg.status}
           </p>
-          <p className="text-black text-[10px] font-normal">
-            Paquete entregado en el destino correspondiente.
-          </p>
+          {pkg.status && (
+            <p className="text-black text-[10px] font-normal">
+              {getStatusMessage(pkg.status)}
+            </p>
+          )}
           <p className="text-zinc-400 text-[10px] font-normal">
             [Fecha entrega], [Hora] (CT)
           </p>

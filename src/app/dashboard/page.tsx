@@ -3,16 +3,16 @@
 import { useState } from "react";
 import { CardSections } from "./components/CardSections";
 import { OrderSection } from "./components/sections/OrderSection";
-import { MessagesSection } from "./components/sections/MessagesSection";
+
 import Image from "next/image";
 
 import logo from "@/assets/icons/logo.svg";
+import { MembershipsSection } from "./components/sections/MembershipsSection";
 
 const DashboardPage = () => {
   const [activeButton, setActiveButton] = useState("Pedidos");
 
   const buttons = [
-    { name: "Mensaje" },
     { name: "Pedidos" },
     { name: "Membresías" },
   ];
@@ -21,8 +21,8 @@ const DashboardPage = () => {
     switch (activeButton) {
       case "Pedidos":
         return <OrderSection />;
-      case "Mensaje":
-        return <MessagesSection />;
+      case "Membresías":
+        return <MembershipsSection />;
       default:
         return null;
     }

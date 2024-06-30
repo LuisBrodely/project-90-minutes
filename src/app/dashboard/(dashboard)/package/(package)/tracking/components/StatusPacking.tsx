@@ -8,6 +8,8 @@ export const StatusPacking: React.FC<PackageItemProps> = ({ pkg }) => {
 
   const getStatusMessage = (status: string): string => {
     switch (status) {
+      case 'Creado':
+        return 'El paquete esta a la espera de salir del centro de distribución.';
       case 'Re-programado':
         return 'El paquete ha sido reprogramado por paquetería.';
       case 'En tránsito':

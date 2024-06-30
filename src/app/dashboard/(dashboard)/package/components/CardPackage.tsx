@@ -9,7 +9,8 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
-import { ButtonCardPackage } from "./ButtonCardPackage";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 interface CardPackageProps {
   title: string;
@@ -62,9 +63,17 @@ export const CardPackage = ({ title }: CardPackageProps) => {
           </div>
         </div>
         <div className="flex flex-col mr-10 gap-5 mt-6">
-          <ButtonCardPackage name="Detalle de paquete" />
-          <ButtonCardPackage name="Realizar seguimiento de paquete" />
-          <ButtonCardPackage name="Escribir opinión del servicio" />
+          <Link href={'/dashboard/package/details'}>
+            <Button variant={'outline'} className="border-[2px] w-72 h-9 border-[#BA9DF1] rounded-[6px] text-[#9D75EB] bg-[#FFFFFF] font-semibold text-sm hover:text-[#FFFFFF] hover:bg-[#7C3AED] hover:border-none">
+              Detalle de paquete
+            </Button>
+          </Link>
+          <Button variant={'outline'} className="border-[2px] w-72 h-9 border-[#BA9DF1] rounded-[6px] text-[#9D75EB] bg-[#FFFFFF] font-semibold text-sm hover:text-[#FFFFFF] hover:bg-[#7C3AED] hover:border-none">
+            Realizar seguimiento de paquete
+          </Button>
+          <Button variant={'outline'} className="border-[2px] w-72 h-9 border-[#BA9DF1] rounded-[6px] text-[#9D75EB] bg-[#FFFFFF] font-semibold text-sm hover:text-[#FFFFFF] hover:bg-[#7C3AED] hover:border-none">
+            Escribir opinión del servicio
+          </Button>
         </div>
       </CardContent>
     </Card>

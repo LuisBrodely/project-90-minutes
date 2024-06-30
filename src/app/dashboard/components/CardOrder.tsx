@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CircleHelpIcon } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export const CardOrder = () => {
 
@@ -23,9 +24,11 @@ export const CardOrder = () => {
             <Image src={box} alt="Img-Productos" />
           </div>
           <div className="flex flex-col gap-2">
-            <Button className="text-[#FFFFFF] font-semibold h-9 w-72 hover:bg-[#7C3AED] hover:scale-105 hover:duration-300 transition-all">
-              <a href="/dashboard/package">Detalle de paquete</a>
-            </Button>
+            <Link href={'/dashboard/package'}>
+              <Button className="text-[#FFFFFF] font-semibold h-9 w-72 hover:bg-[#7C3AED] hover:scale-105 hover:duration-300 transition-all">
+                Detalle de paquete
+              </Button>
+            </Link>
             <Button className="text-[#FFFFFF] font-semibold h-9 w-72 hover:bg-[#7C3AED] hover:scale-105 hover:duration-300 transition-all">
               Seguimiento de paquete
             </Button>

@@ -1,6 +1,8 @@
 import Image from "next/image";
 import box from "@/assets/img/box.png";
 import { ButtonCardPackage } from "./ButtonCardPackage";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 interface CardPackageProps {
   name: string;
@@ -54,7 +56,9 @@ export const CardPackage = ({ name }: CardPackageProps) => {
         </div>
         <div className="flex flex-col mr-10 gap-5 mt-6">
           <ButtonCardPackage name="Detalle de paquete" />
-          <ButtonCardPackage name="Realizar seguimiento de paquete" />
+          <Link href={'/dashboard/package/tracking/6f5c6625-7393-407e-bda1-814d8f5aa367'}>
+            <Button variant={'outline'}>Realizar seguimiento del paquete</Button>
+          </Link>
           <ButtonCardPackage name="Escribir opinión del servicio" />
         </div>
       </div>

@@ -18,6 +18,7 @@ export default function LoginPage() {
     e.preventDefault();
 
     if (!loginForm.email || !loginForm.password) {
+      alert("Por favor, llena todos los campos");
       return;
     }
 

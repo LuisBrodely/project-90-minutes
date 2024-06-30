@@ -17,15 +17,11 @@ const PackagePackage = () => {
         <Breadcrumb className="mt-5">
           <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink>
                 <Link href="/dashboard" className="text-[#757575] font-semibold">Cuenta</Link>
-              </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator/>
             <BreadcrumbItem>
-              <BreadcrumbLink>
                 <Link href="/dashboard/package" className="text-[#7C3AED] font-semibold">Mis paquetes</Link>
-              </BreadcrumbLink>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>

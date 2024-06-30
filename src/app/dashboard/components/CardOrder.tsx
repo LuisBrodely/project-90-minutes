@@ -5,6 +5,7 @@ import { CircleHelpIcon } from "lucide-react";
 import Image from "next/image";
 
 export const CardOrder = () => {
+
   return (
     <Card className="w-[897px] h-72 bg-[#FFF] flex flex-col gap-10 mt-5">
       <CardContent className="p-0">
@@ -23,7 +24,7 @@ export const CardOrder = () => {
           </div>
           <div className="flex flex-col gap-2">
             <Button className="text-[#FFFFFF] font-semibold h-9 w-72 hover:bg-[#7C3AED] hover:scale-105 hover:duration-300 transition-all">
-              Detalle de paquete
+              <a href="/dashboard/package">Detalle de paquete</a>
             </Button>
             <Button className="text-[#FFFFFF] font-semibold h-9 w-72 hover:bg-[#7C3AED] hover:scale-105 hover:duration-300 transition-all">
               Seguimiento de paquete

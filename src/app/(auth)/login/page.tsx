@@ -1,4 +1,5 @@
 "use client";
+
 import logo from "@/assets/icons/logo.svg";
 import bannerLogin from "@/assets/img/banner-login.png";
 
@@ -18,6 +19,7 @@ export default function LoginPage() {
     e.preventDefault();
 
     if (!loginForm.email || !loginForm.password) {
+      alert("Por favor, llena todos los campos");
       return;
     }
 

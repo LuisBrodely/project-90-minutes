@@ -1,6 +1,6 @@
 import Image from "next/image";
 import box from "@/assets/img/box.png";
-import { ButtonCardPackage } from "../../../components/ButtonCardPackage";
+import { Button } from "@/components/ui/button";
 
 export const CardDetailsPackage = () => {
   return (
@@ -23,8 +23,12 @@ export const CardDetailsPackage = () => {
         </div>
       </div>
       <div className="flex flex-col gap-5">
-        <ButtonCardPackage name="Realizar seguimiento de paquete" />
-        <ButtonCardPackage name="Escribir opinión del servicio" />
+        <Button variant={'outline'} className="border-[2px] w-72 h-9 border-[#BA9DF1] rounded-[6px] text-[#9D75EB] bg-[#FFFFFF] font-semibold text-sm hover:text-[#FFFFFF] hover:bg-[#7C3AED] hover:border-none">
+            Realizar seguimiento de paquete
+        </Button>
+        <Button variant={'outline'} className="border-[2px] w-72 h-9 border-[#BA9DF1] rounded-[6px] text-[#9D75EB] bg-[#FFFFFF] font-semibold text-sm hover:text-[#FFFFFF] hover:bg-[#7C3AED] hover:border-none">
+          Escribir opinión del servicio
+        </Button>
       </div>
     </div>
   );

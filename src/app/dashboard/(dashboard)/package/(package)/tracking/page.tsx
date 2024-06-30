@@ -5,6 +5,8 @@ import { Package } from "./interfaces/package";
 
 const PackageTrackingPage = () => {
 
+  const url = 'https://dev-90minutos-1292116088.us-east-2.elb.amazonaws.com/package/v1/get/'
+  
   const examplePackage: Package = {
     id: 'efc73128-8bf4-465d-9fab-752abc5ba2fe',
     origin: 'Carretera Villaflores s/n, Los Arbolitos, Berriozabal, Chis',

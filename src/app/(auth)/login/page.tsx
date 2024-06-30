@@ -1,45 +1,41 @@
-"use client"
-
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
+"use client";
 import logo from "@/assets/icons/logo.svg";
 import bannerLogin from "@/assets/img/banner-login.png";
 
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-
-
-const formSchema = z.object({
-  email: z.string().min(2).max(20),
-  password: z.string().min(8).max(20),
-});
+import { useState } from "react";
+import { signIn } from "next-auth/react";
 
 export default function LoginPage() {
-  // 1. Define your form.
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      email: "",
-    },
+  const [loginForm, setLoginForm] = useState({
+    email: "brodely@gmail.com",
+    password: "12345678",
   });
 
-  // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
-  }
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!loginForm.email || !loginForm.password) {
+      return;
+    }
+
+    try {
+      const responseNextAuth = await signIn("credentials", {
+        email: loginForm.email,
+        password: loginForm.password,
+        redirect: true,
+        callbackUrl: "/",
+      });
+
+      if (responseNextAuth?.error) {
+        console.error("Error signing in:", responseNextAuth.error);
+      }
+    } catch (error) {
+      console.error("Error signing in:", error);
+    }
+  };
 
   return (
     <div className="flex h-screen">
@@ -66,56 +62,35 @@ export default function LoginPage() {
             <h1 className="text-6xl font-semibold">Bienvenido de vuelta</h1>
             <span className="text-xl">Ingresa tus datos para entrar.</span>
           </div>
-          <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(onSubmit)}
-              className="grid grid-flow-row gap-9"
-            >
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <Input
-                        type="email"
-                        placeholder="Ingresa tu correo"
-                        {...field}
-                        className="h-12 text-lg"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormControl>
-                      <Input
-                        type="password"
-                        placeholder="Ingresa tu contraseña"
-                        {...field}
-                        className="h-12 text-lg"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button type="submit" className="h-12 text-lg">
-                Iniciar Sesión
-              </Button>
-              <FormDescription className="text-black text-md pt-16 text-center">
-                ¿No tienes cuenta aún?{" "}
-                <a href="/register" className="text-center font-bold">
-                  Regístrate aquí
-                </a>
-              </FormDescription>
-            </form>
-          </Form>
+          <form onSubmit={handleSubmit} className="grid grid-flow-row gap-9">
+            <Input
+              value={loginForm.email}
+              onChange={(e) =>
+                setLoginForm({ ...loginForm, email: e.target.value })
+              }
+              type="email"
+              placeholder="Ingresa tu correo electrónico"
+              className="h-12 text-lg"
+            />
+            <Input
+              value={loginForm.password}
+              onChange={(e) =>
+                setLoginForm({ ...loginForm, password: e.target.value })
+              }
+              type="password"
+              placeholder="Ingresa tu contraseña"
+              className="h-12 text-lg"
+            />
+            <Button type="submit" className="h-12 text-lg">
+              Iniciar Sesión
+            </Button>
+            <div className="text-black text-md pt-16 text-center">
+              ¿No tienes cuenta aún?{" "}
+              <a href="/register" className="text-center font-bold">
+                Regístrate aquí
+              </a>
+            </div>
+          </form>
         </div>
       </div>
     </div>

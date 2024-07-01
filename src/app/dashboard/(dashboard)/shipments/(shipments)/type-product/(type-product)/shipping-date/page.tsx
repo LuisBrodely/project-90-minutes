@@ -1,8 +1,7 @@
 "use client"
-
 import { Header } from "./components/Header";
 
-const PackageTypePage = () => {
+const PackageDatePage = () => {
   return (
     <div className='mx-28'>
       <Header />
@@ -12,4 +11,4 @@ const PackageTypePage = () => {
   )
 }
 
-export default PackageTypePage;
+export default PackageDatePage;

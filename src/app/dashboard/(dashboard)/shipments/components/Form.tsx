@@ -1,8 +1,26 @@
 "use client"
 import React, { useState } from 'react'
+import minutesApi from '@/shared/config/users-service/minutes.api';
+
 
 export default function Form() {
+    /* 
+    Request va con estos datos:
+    {
+    "clientId": "348c3dff-84fa-4d41-83ba-92663f3d23b9",
+    "paymentId": 2,
+    "orderId": 82,
+    "origin": "Carretera Villaflores s/n, Los Arbolitos, Berriozabal, Chis.",
+    "destiny": "Carretera Villaflores 650, CHIS 133 592, El Mirador, El Suspiro, 29100 Suchiapa, Chis.",
+    "weight": 60,
+    "cost":1890,
+    "details": "Manejar con cuidado"
+}
+    
+    */
     const [formData, setFormData] = useState({
+        clientId: '',
+        pais: 'México',
         direccion: '',
         codigoPostal: '',
         ciudad: '',
@@ -17,8 +35,21 @@ export default function Form() {
             [e.target.name]: e.target.value
         });
     };
+
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        try {
+            const response = await minutesApi.post('/package/v1/post', formData);
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+
+
     return (
-        <form className="w-full bg-white p-8 rounded-l-lg shadow-md">
+        <form className="w-full bg-white p-8 rounded-l-lg shadow-md" onSubmit={handleSubmit}>
             <div className="mb-6">
                 <label className="block text-[#303030] text-sm font-bold mb-2 " htmlFor="pais">
                     País/Territorio

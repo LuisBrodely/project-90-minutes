@@ -42,8 +42,8 @@ export const CardPackage = ({
       <CardHeader className="w-full h-20 bg-[#F3EEFC] flex flex-row justify-between">
         <div className="flex gap-10 ml-10">
           <div className="flex flex-col">
-            <h2 className="text-[#686868] font-normal text-sm">Paquete {status}</h2>
-            <h2 className="text-[#686868] font-semibold text-xs">{deliveryDate ? deliveryDate : "Null"}</h2>
+            <h2 className="text-[#686868] font-normal text-sm">Origen</h2>
+            <h2 className="text-[#686868] font-semibold text-xs">{origin}</h2>
           </div>
           <div className="flex flex-col">
             <h2 className="text-[#686868] font-normal text-sm">Enviar a</h2>
@@ -72,8 +72,8 @@ export const CardPackage = ({
             </div>
           </div>
         </div>
-        <div className="flex flex-col mr-10 gap-5 mt-6">
-          <Link href={`/dashboard/package/details`}>
+        <div className="flex flex-col mr-10 gap-5 mt-12 items-center">
+          <Link href={`/dashboard/package/details/${id}`}>
             <Button variant="outline" className="border-[2px] w-72 h-9 border-[#BA9DF1] rounded-[6px] text-[#9D75EB] bg-[#FFFFFF] font-semibold text-sm hover:text-[#FFFFFF] hover:bg-[#7C3AED] hover:border-none">
               Detalle de paquete
             </Button>
@@ -83,9 +83,6 @@ export const CardPackage = ({
             Realizar seguimiento de paquete
           </Button>
           </Link>
-          <Button variant="outline" className="border-[2px] w-72 h-9 border-[#BA9DF1] rounded-[6px] text-[#9D75EB] bg-[#FFFFFF] font-semibold text-sm hover:text-[#FFFFFF] hover:bg-[#7C3AED] hover:border-none">
-            Escribir opinión del servicio
-          </Button>
         </div>
       </CardContent>
     </Card>

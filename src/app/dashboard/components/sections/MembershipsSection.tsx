@@ -1,19 +1,19 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { TextIcon } from "../TextIcon";
-import { Button } from "@/components/ui/button";
 import { CircleCheckBig } from 'lucide-react';
+import PayPalButton from "../PayPalButton";
 
 export const MembershipsSection = () => {
   return (
     <>
       <h2 className="font-semibold text-2xl text-[#7C3AED]">Membresías</h2>
-      <Card className="bg-[#441D87] w-[940px] h-72">
+      <Card className="bg-[#441D87] w-[940px] h-[310px]">
         <CardContent className="flex flex-row justify-around">
           <div className="flex flex-col mt-5 gap-5">
             <h2 className="text-[#FFFFFF] font-semibold text-xl">Plan anual</h2>
             <h2 className="text-[#FFFFFF] font-semibold text-5xl">$999.00</h2>
             <h2 className="text-[#909090] font-medium text-sm">Realizar pago anual*</h2>
-            <Button className="bg-[#FFF] text-[#441D87] font-semibold hover:bg-[#FFF]">Adquirir</Button>
+            <PayPalButton/>
           </div>
           <div className="flex flex-col mt-16 gap-5">
             <TextIcon icon={<CircleCheckBig className="invert" />} text="25% de descuento al enviar paquetes."/>
@@ -26,13 +26,13 @@ export const MembershipsSection = () => {
           </div>
         </CardContent>
       </Card>
-      <Card className="bg-[#F3EEFC] w-[940px] h-72">
+      <Card className="bg-[#F3EEFC] w-[940px] h-[310px]">
         <CardContent className="flex flex-row justify-around">
           <div className="flex flex-col mt-5 gap-5">
             <h2 className="text-[#262626] font-semibold text-xl">Plan mensual</h2>
             <h2 className="text-[#262626] font-semibold text-5xl">$120.00</h2>
             <h2 className="text-[#909090] font-medium text-sm">Realizar pago anual*</h2>
-            <Button className="bg-[#441D87] text-[#FFF] font-semibold hover:bg-[#441D87]">Adquirir</Button>
+            <PayPalButton/>
           </div>
           <div className="flex flex-col mt-16 gap-5">
             <div className="flex flex-row gap-2 items-center">

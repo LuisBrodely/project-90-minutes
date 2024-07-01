@@ -9,7 +9,9 @@ export const StatusPacking: React.FC<PackageItemProps> = ({ pkg }) => {
   const getStatusMessage = (status: string): string => {
     switch (status) {
       case 'Creado':
-        return 'El paquete esta a la espera de salir del centro de distribución.';
+        return 'El paquete ha sido empaquetado con exito.';
+        case 'En oficina':
+          return 'El paquete esta a la espera de salir del centro de distribución.';
       case 'Re-programado':
         return 'El paquete ha sido reprogramado por paquetería.';
       case 'En tránsito':
@@ -23,22 +25,31 @@ export const StatusPacking: React.FC<PackageItemProps> = ({ pkg }) => {
     }
   };
 
+  const dateObj = new Date(pkg.deliveryDate)
+  const date = dateObj.toISOString().split('T')[0];
+  // Formatear la hora en formato de 24 horas
+  const hours = dateObj.getUTCHours().toString().padStart(2, '0');
+  const minutes = dateObj.getUTCMinutes().toString().padStart(2, '0');
+  const seconds = dateObj.getUTCSeconds().toString().padStart(2, '0');
+  const time = `${hours}:${minutes}:${seconds}`;
+
+
 
 
   return (
     <div className="flex-col w-[1144px] h-[225px] bg-white shadow border border-zinc-100 mt-[30px]">
       <div className="flex-col mt-[20px] ml-[30px] justify-start items-start gap-[5px] inline-flex">
         <p className="text-zinc-800 text-base font-semibold">
-          90Minutos [Tipo de membresia] envió.
+          {/* 90Minutos [Tipo de membresia] envió. */} 90Minutos Express envió.
         </p>
         <p className="text-zinc-800 text-base font-semibold">
           Numero de identificación {" "}
           <span className="text-neutral-500 text-base font-normal">{pkg.id}</span>
         </p>
         <p className="text-zinc-800 text-base font-semibold">
-          Envío a{" "}
+          Envío a dirección{" "}
           <span className="text-zinc-800 text-base font-normal">
-            [Nombre de persona], [Numero Telefónico], {pkg.destiny}
+            {pkg.destiny}
           </span>
         </p>
       </div>
@@ -58,7 +69,7 @@ export const StatusPacking: React.FC<PackageItemProps> = ({ pkg }) => {
             </p>
           )}
           <p className="text-zinc-400 text-[10px] font-normal">
-            [Fecha entrega], [Hora] (CT)
+            {date}, {time} (CT)
           </p>
         </div>
       </div>

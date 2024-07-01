@@ -28,14 +28,14 @@ export const Articles: React.FC<PackageItemProps> = ({ pkg }) => {
             <Image src={box} alt="" className="w-[90px] h-[93.70px]" />
             <div className="flex-col mt-[10px] ml-[30px]">
               <p className="text-zinc-800 text-base font-normal">
-                [Numero] Cajas de tamaño {getPackageSize(pkg.weight)}.
+                Cajas de tamaño {getPackageSize(pkg.weight)}.
               </p>
               <p className="text-zinc-800 text-base font-normal">
                 Peso {pkg.weight} kg.
               </p>
             </div>
           </div>
-          <span className="text-black text-base font-normal ml-[423px]"> x[Numero de paquetes] </span>
+          <span className="text-black text-base font-normal ml-[423px]"> Total ${pkg.cost} </span>
         </div>
       </div>
     </div>

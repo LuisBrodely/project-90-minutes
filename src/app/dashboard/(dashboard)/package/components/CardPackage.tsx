@@ -73,7 +73,7 @@ export const CardPackage = ({
           </div>
         </div>
         <div className="flex flex-col mr-10 gap-5 mt-6">
-          <Link href={`/dashboard/package/details`}>
+          <Link href={`/dashboard/package/details/${id}`}>
             <Button variant="outline" className="border-[2px] w-72 h-9 border-[#BA9DF1] rounded-[6px] text-[#9D75EB] bg-[#FFFFFF] font-semibold text-sm hover:text-[#FFFFFF] hover:bg-[#7C3AED] hover:border-none">
               Detalle de paquete
             </Button>

@@ -1,5 +1,9 @@
-import { CardDetailsPackage } from "./components/CardDetailsPackage";
+"use client"
+
+import { CardDetailsPackage } from "../components/CardDetailsPackage";
+import { useEffect, useState } from "react";
 import Link from "next/link"
+import axios from "axios";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -7,23 +11,43 @@ import {
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
+import { useParams } from "next/navigation";
+import { Package, PackageResponse } from "../../tracking/interfaces/package";
+import { Card } from "@/components/ui/card";
 
 const PackageDetailsPage = () => {
+  const [userPackage, setUserPackage] = useState<Package | null>(null);
+  const { id } = useParams()
+
+  const url =
+    "http://dev-90minutos-1292116088.us-east-2.elb.amazonaws.com/package/v1/get/";
+
+  const fetchPackage = async () => {
+    const { data } = await axios.get<PackageResponse>(url);
+    const userPackage = data.data.filter((pkg) => pkg.id === id)
+    console.log(userPackage)
+    setUserPackage(userPackage[0]);
+  };
+
+  useEffect(() => {
+    fetchPackage();
+  }, []);
+
   return (
     <>
       <div className="ml-28 mr-28 pb-4 border-b-[1px] border-b-[#EEEEEE]">
-      <Breadcrumb className="mt-5">
+        <Breadcrumb className="mt-5">
           <BreadcrumbList>
             <BreadcrumbItem>
-                <Link href="/dashboard" className="text-[#757575] font-semibold">Cuenta</Link>
+              <Link href="/dashboard" className="text-[#757575] font-semibold">Cuenta</Link>
             </BreadcrumbItem>
-            <BreadcrumbSeparator/>
+            <BreadcrumbSeparator />
             <BreadcrumbItem>
-                <Link href="/dashboard/package" className="text-[#757575] font-semibold">Mis paquetes</Link>
+              <Link href="/dashboard/package" className="text-[#757575] font-semibold">Mis paquetes</Link>
             </BreadcrumbItem>
-            <BreadcrumbSeparator/>
+            <BreadcrumbSeparator />
             <BreadcrumbItem>
-                <Link href="/dashboard/package/details" className="text-[#7C3AED] font-semibold">Detalles</Link>
+              <Link href="/dashboard/package/details" className="text-[#7C3AED] font-semibold">Detalles</Link>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
@@ -43,7 +67,7 @@ const PackageDetailsPage = () => {
             {"ID [ID de Paquete]"}
           </h2>
         </div>
-        <div className="w-full h-64 bg-white shadow-md pt-5 mt-5 flex justify-between">
+        <Card className="w-full h-64 bg-white shadow-md pt-5 mt-5 flex justify-between">
           <div className="flex flex-col gap-5 ml-10">
             <h2 className="flex flex-col">
               <span className="text-[#303030] font-semibold">
@@ -103,10 +127,10 @@ const PackageDetailsPage = () => {
               <span className="text-[#303030] font-semibold">{"$[Total]"}</span>
             </h2>
           </div>
-        </div>
-        <CardDetailsPackage />
-        <CardDetailsPackage />
-        <CardDetailsPackage />
+        </Card>
+        <CardDetailsPackage/>
+        <CardDetailsPackage/>
+        <CardDetailsPackage/>
       </div>
     </>
   );

@@ -1,17 +1,25 @@
-
-import { useRouter } from 'next/navigation';
-import { CardPackage } from '../package/components/CardPackage';
 import { Header } from './components/Header';
 import Form from './components/Form';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
+import { Card } from '@/components/ui/card';
 
 const PackageShipmentsPage = () => {
   return (
     <div className='mx-28'>
       <Header />
-      <div className='flex justify-between'>
+      <Card className='flex justify-between flex-col'>
         <Form />
-        <Form />
-      </div>
+        <div className='flex justify-end p-8'>
+          <Button className='px-24'>
+            <Link
+              href="/dashboard/shipments/type-product"
+            >
+              Siguiente
+            </Link>
+          </Button>
+        </div>
+      </Card>
     </div>
   )
 }

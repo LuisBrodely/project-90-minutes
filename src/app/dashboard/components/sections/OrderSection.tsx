@@ -1,3 +1,5 @@
+"use client";
+
 import { CardOrder } from "../CardOrder";
 import { CardSearchOrder } from "../CardSearchOrder";
 import axios from 'axios';
@@ -12,7 +14,7 @@ export const OrderSection = () => {
   const [packages, setPackages] = useState<Package[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-
+  const [filter, setFilter] = useState<string | null>(null);
 
   useEffect(() => {
     const getPackages = async () => {
@@ -30,12 +32,16 @@ export const OrderSection = () => {
     getPackages();
   }, []);
 
+  const filteredPackages = filter
+    ? packages.filter(pkg => pkg.status === filter)
+    : packages;
+
   return (
     <>
       <h2 className="text-[#7C3AED] font-semibold text-2xl">Mis Pedidos</h2>
-      <CardSearchOrder />
+      <CardSearchOrder onFilterChange={setFilter} />
       <div className="overflow-scroll overflow-x-hidden max-h-[424px] w-[920px] pb-1">
-      {packages.map((pkg) => (
+        {filteredPackages.map((pkg) => (
           <CardOrder
             key={pkg.id}
             id={pkg.id}

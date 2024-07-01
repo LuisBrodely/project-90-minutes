@@ -9,9 +9,11 @@ export const CardSearchOrder = () => {
       <CardContent>
         <div className="flex w-[900px] justify-around">
           <div className="flex gap-5">
-            <Button variant="link" className="text-[#0F172A] font-light hover:duration-300 transition-all text-base hover:text-[#7C3AED]">
-              Ver todos
-            </Button>
+            <Link href={`/dashboard/package`}>
+              <Button variant="link" className="text-[#0F172A] font-light hover:duration-300 transition-all text-base hover:text-[#7C3AED]">
+                Ver todos
+              </Button>
+            </Link>
             <Button variant="link" className="text-[#0F172A] font-light hover:duration-300 transition-all text-base hover:text-[#7C3AED]">
               Por pagar
             </Button>

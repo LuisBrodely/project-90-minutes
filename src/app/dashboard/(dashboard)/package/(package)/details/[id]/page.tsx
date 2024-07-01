@@ -1,13 +1,11 @@
 "use client"
 
-import { CardDetailsPackage } from "../components/CardDetailsPackage";
 import { useEffect, useState } from "react";
 import Link from "next/link"
 import axios from "axios";
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
@@ -128,9 +126,6 @@ const PackageDetailsPage = () => {
             </h2>
           </div>
         </Card>
-        <CardDetailsPackage/>
-        <CardDetailsPackage/>
-        <CardDetailsPackage/>
       </div>
     </>
   );

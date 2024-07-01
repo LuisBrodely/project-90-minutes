@@ -1,6 +1,6 @@
 export interface PackageResponse {
     status:  string;
-    data:    Package[];
+    data:    Package[] | Package;
     message: string;
 }
 

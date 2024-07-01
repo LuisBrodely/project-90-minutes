@@ -12,14 +12,12 @@ const PackageTrackingPage = () => {
   const [userPackage, setUserPackage] = useState<Package | null>(null);
   const { id } = useParams()
 
-  const url =
-    "http://dev-90minutos-1292116088.us-east-2.elb.amazonaws.com/package/v1/get/";
+  const url =`http://dev-90minutos-1292116088.us-east-2.elb.amazonaws.com/package/v1/get/${id}`;
 
   const fetchPackage = async () => {
     const { data } = await axios.get<PackageResponse>(url);
-    const userPackage = data.data.filter((pkg) => pkg.id === id)
+    setUserPackage(data.data as Package) 
     console.log(userPackage)
-    setUserPackage(userPackage[0]);
   };
 
   useEffect(() => {
@@ -33,11 +31,9 @@ const PackageTrackingPage = () => {
         <span className="text-neutral-600 text-2xl font-semibold mt-[50px]">
           | Monitoreo de paquete
         </span>
-        <TimeTracking />
-
-        {userPackage && <Articles pkg={userPackage} />}
-
+        {userPackage && <TimeTracking pkg={userPackage}/>}
         {userPackage && <StatusPacking pkg={userPackage}/>}
+        {userPackage && <Articles pkg={userPackage} />}
       </div>
     </div>
   );

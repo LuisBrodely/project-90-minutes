@@ -1,34 +1,36 @@
 "use client"
 
 import { useEffect, useState } from "react";
-import Link from "next/link"
+import Link from "next/link";
 import axios from "axios";
 import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbList,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"
+} from "@/components/ui/breadcrumb";
 import { useParams } from "next/navigation";
 import { Package, PackageResponse } from "../../tracking/interfaces/package";
 import { Card } from "@/components/ui/card";
 
 const PackageDetailsPage = () => {
   const [userPackage, setUserPackage] = useState<Package | null>(null);
-  const { id } = useParams()
+  const { id } = useParams();
 
-  const url =
-    "http://dev-90minutos-1292116088.us-east-2.elb.amazonaws.com/package/v1/get/";
+  const url = `http://dev-90minutos-1292116088.us-east-2.elb.amazonaws.com/package/v1/get/${id}`;
 
   const fetchPackage = async () => {
-    const { data } = await axios.get<PackageResponse>(url);
-    const userPackage = data.data.filter((pkg) => pkg.id === id)
-    console.log(userPackage)
-    setUserPackage(userPackage[0]);
+    try {
+      const { data } = await axios.get<PackageResponse>(url);
+      setUserPackage(data.data as unknown as Package);
+      console.log('Fetched data:', data.data);
+    } catch (error) {
+      console.error('Error fetching package:', error);
+    }
   };
 
   useEffect(() => {
-    fetchPackage();
+    fetchPackage()
   }, []);
 
   return (
@@ -59,20 +61,20 @@ const PackageDetailsPage = () => {
       <div className="ml-28 mr-28">
         <div className="flex gap-20 mt-5">
           <h2 className="text-[#5F5F5F] font-semibold text-sm">
-            Paquete enviado el {"[Fecha de envio]"}
+            Paquete enviado el [{userPackage?.creationDate}]
           </h2>
           <h2 className="text-[#5F5F5F] font-semibold text-sm">
-            {"ID [ID de Paquete]"}
+            ID [{userPackage?.id}]
           </h2>
         </div>
         <Card className="w-full h-64 bg-white shadow-md pt-5 mt-5 flex justify-between">
           <div className="flex flex-col gap-5 ml-10">
             <h2 className="flex flex-col">
               <span className="text-[#303030] font-semibold">
-                Dirección de envió
+                Dirección de envío
               </span>
               <span className="text-[#B8B8B8] font-semibold">
-                {"[Dirección]"}
+                {userPackage?.destiny}
               </span>
             </h2>
             <h2 className="flex flex-col">
@@ -80,7 +82,7 @@ const PackageDetailsPage = () => {
                 Método de pago
               </span>
               <span className="text-[#B8B8B8] font-semibold">
-                {"[Icono] [Nombre Tarjeta] que termina en [Últimos 4 dígitos]"}
+
               </span>
             </h2>
             <h2 className="flex flex-col">
@@ -88,7 +90,7 @@ const PackageDetailsPage = () => {
                 Horario de entrega
               </span>
               <span className="text-[#B8B8B8] font-semibold">
-                {"Al final del dia"}
+                [{userPackage?.deliveryDate}]
               </span>
             </h2>
           </div>
@@ -96,33 +98,33 @@ const PackageDetailsPage = () => {
             <h2 className="font-semibold">Resumen de paquete</h2>
             <h2 className="flex gap-32">
               <span className="text-[#B8B8B8]">Peso:</span>
-              <span className="text-[#B8B8B8]">{"[Kilogramos]kg"}</span>
+              <span className="text-[#B8B8B8]">{userPackage?.weight} kg</span>
             </h2>
             <h2 className="flex gap-24">
               <span className="text-[#B8B8B8]">Distancia:</span>
-              <span className="text-[#B8B8B8]">{"[Distancia]km"}</span>
+              <span className="text-[#B8B8B8]">{userPackage?.distance} km</span>
             </h2>
             <h2 className="flex gap-[74px]">
               <span className="text-[#B8B8B8]">Recolección:</span>
-              <span className="text-[#B8B8B8]">{"$[Costo]"}</span>
+              <span className="text-[#B8B8B8]"></span>
             </h2>
             <h2 className="flex gap-[120px]">
               <span className="text-[#B8B8B8]">Envío:</span>
-              <span className="text-[#B8B8B8]">{"$[Costo]"}</span>
+              <span className="text-[#B8B8B8]"></span>
             </h2>
             <h2 className="flex gap-20">
               <span className="text-[#B8B8B8]">Descuento:</span>
-              <span className="text-[#B8B8B8]">{"%[Descuento]"}</span>
+              <span className="text-[#B8B8B8]"></span>
             </h2>
             <h2 className="flex gap-[100px]">
               <span className="text-[#B8B8B8]">Subtotal:</span>
-              <span className="text-[#B8B8B8]">{"$[Subtotal]"}</span>
+              <span className="text-[#B8B8B8]"></span>
             </h2>
             <h2 className="flex gap-5">
               <span className="text-[#303030] font-semibold">
-                Total (IVA incluido):
+                Total (IVA incluido): ${userPackage?.cost}
               </span>
-              <span className="text-[#303030] font-semibold">{"$[Total]"}</span>
+              <span className="text-[#303030] font-semibold"></span>
             </h2>
           </div>
         </Card>

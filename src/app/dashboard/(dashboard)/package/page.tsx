@@ -34,7 +34,7 @@ const PackagePackage = () => {
   useEffect(() => {
     const getPackages = async () => {
       try {
-        const response = await axios.get('URL_DE_TU_API');
+        const response = await axios.get('http://dev-90minutos-1292116088.us-east-2.elb.amazonaws.com/package/v1/get');
         const packagesData = response.data.data;
         setPackages(packagesData);
       } catch (error) {

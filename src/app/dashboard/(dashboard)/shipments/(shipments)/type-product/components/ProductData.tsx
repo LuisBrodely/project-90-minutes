@@ -35,6 +35,11 @@ const ProductData = () => {
   const totalPackages = packages.length;
   const totalWeight = packages.reduce((sum, pkg) => sum + pkg.weight, 0);
 
+  const handleSubmit = () => {
+    // Guardar en localstorage los paquetes con sus datos
+    localStorage.setItem('packages', JSON.stringify(packages));
+  };
+
   return (
     <Card className="p-12 mt-6">
       <div className='flex justify-between'>
@@ -86,6 +91,7 @@ const ProductData = () => {
                 <label className="text-[#B8B8B8]">Longitud (cm)*</label>
                 <Input
                   type="number"
+                  min={1}
                   className="p-2 border rounded "
                   value={pkg.length}
                   onChange={e => updatePackage(pkg.id, 'length', Number(e.target.value))}
@@ -98,6 +104,7 @@ const ProductData = () => {
                   type="number"
                   className="p-2 border rounded "
                   value={pkg.width}
+                  min={1}
                   onChange={e => updatePackage(pkg.id, 'width', Number(e.target.value))}
                 />
               </div>
@@ -108,6 +115,7 @@ const ProductData = () => {
                   type="number"
                   className="p-2 border rounded "
                   value={pkg.height}
+                  min={1}
                   onChange={e => updatePackage(pkg.id, 'height', Number(e.target.value))}
                 />
               </div>
@@ -144,6 +152,7 @@ const ProductData = () => {
           </p>
         </div>
         <Button
+          onClick={handleSubmit}
           className="mt-10 p-2 px-24">
           <Link
             href="/dashboard/shipments/type-product/shipping-date"

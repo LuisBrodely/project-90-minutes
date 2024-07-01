@@ -1,9 +1,31 @@
-import React from 'react';
+"use client"
+import React, { useEffect, useState } from 'react';
 import calendar from '@/assets/icons/calendar_clock.png';
 import Image from 'next/image';
 import { Card } from '@/components/ui/card';
 
+interface DeliveryDetails{
+    tipoEnvio: string;
+    diaEntrega: string;
+    mesEntrega: string;
+    anioEntrega: string;
+    diaEnvio: string;
+    mesEnvio: string;
+    anioEnvio: string;
+}
+
 const ShippingDateDetails = () => {
+    const [deliveryDetails, setDeliveryDetails] = useState<DeliveryDetails | null>(null);
+
+    useEffect(() => {
+        const deliveryDetails = localStorage.getItem('deliveryDetails');
+        if (deliveryDetails) {
+            const parsedDeliveryDetails = JSON.parse(deliveryDetails);
+            setDeliveryDetails(parsedDeliveryDetails);
+        }
+    }, []);
+
+
     return (
         <Card className="flex justify-between items-start p-8 mt-3 px-12">
             <div>
@@ -18,9 +40,9 @@ const ShippingDateDetails = () => {
                     <h2 className="text-lg font-semibold text-[#303030]">Fecha de envío</h2>
                 </div>
                 <p className="text-[#B8B8B8] ml-8">
-                    [Dia de semana], [Dia] [Mes], [Año]
+                    {deliveryDetails?.diaEnvio} de {deliveryDetails?.mesEnvio} del {deliveryDetails?.anioEnvio}
                     <br />
-                    Envió [Tipo de envió]
+                    Envío {deliveryDetails?.tipoEnvio}
                 </p>
             </div>
             <div>
@@ -35,9 +57,7 @@ const ShippingDateDetails = () => {
                     <h2 className="text-lg font-semibold text-[#303030]">Fecha de entrega</h2>
                 </div>
                 <p className="text-[#B8B8B8] ml-8">
-                    [Dia de semana], [Dia] [Mes], [Año]
-                    <br />
-                    [Horario de entrega]
+                    {deliveryDetails?.diaEntrega} de {deliveryDetails?.mesEntrega} del {deliveryDetails?.anioEntrega}
                 </p>
             </div>
         </Card>

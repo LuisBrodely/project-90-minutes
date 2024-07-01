@@ -43,7 +43,7 @@ export const CardPackage = ({
         <div className="flex gap-10 ml-10">
           <div className="flex flex-col">
             <h2 className="text-[#686868] font-normal text-sm">Paquete {status}</h2>
-            <h2 className="text-[#686868] font-semibold text-xs">{creationDate ? creationDate : "[Fecha de envío]"}</h2>
+            <h2 className="text-[#686868] font-semibold text-xs">{deliveryDate ? deliveryDate : "Null"}</h2>
           </div>
           <div className="flex flex-col">
             <h2 className="text-[#686868] font-normal text-sm">Enviar a</h2>
@@ -73,14 +73,16 @@ export const CardPackage = ({
           </div>
         </div>
         <div className="flex flex-col mr-10 gap-5 mt-6">
-          <Link href={`/dashboard/package/details/${id}`}>
+          <Link href={`/dashboard/package/details`}>
             <Button variant="outline" className="border-[2px] w-72 h-9 border-[#BA9DF1] rounded-[6px] text-[#9D75EB] bg-[#FFFFFF] font-semibold text-sm hover:text-[#FFFFFF] hover:bg-[#7C3AED] hover:border-none">
               Detalle de paquete
             </Button>
           </Link>
+          <Link href={`/dashboard/package/tracking/${id}`}>
           <Button variant="outline" className="border-[2px] w-72 h-9 border-[#BA9DF1] rounded-[6px] text-[#9D75EB] bg-[#FFFFFF] font-semibold text-sm hover:text-[#FFFFFF] hover:bg-[#7C3AED] hover:border-none">
             Realizar seguimiento de paquete
           </Button>
+          </Link>
           <Button variant="outline" className="border-[2px] w-72 h-9 border-[#BA9DF1] rounded-[6px] text-[#9D75EB] bg-[#FFFFFF] font-semibold text-sm hover:text-[#FFFFFF] hover:bg-[#7C3AED] hover:border-none">
             Escribir opinión del servicio
           </Button>

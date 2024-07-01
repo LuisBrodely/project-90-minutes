@@ -1,3 +1,4 @@
+import { Card } from "@/components/ui/card";
 import { ButtonCardSection } from "./ButtonCardSection";
 
 interface ButtonCardProps {
@@ -16,7 +17,7 @@ export const CardSections: React.FC<CardSectionsProps> = ({
   onButtonClick,
 }) => {
   return (
-    <div className="flex flex-col bg-[#FFF] w-72 h-80 shadow-md ml-4">
+    <Card className="flex flex-col bg-[#FFF] w-72 h-80 shadow-md ml-4">
       {buttons.map((buttonProps, index) => (
         <ButtonCardSection
           key={index}
@@ -25,6 +26,6 @@ export const CardSections: React.FC<CardSectionsProps> = ({
           onClick={() => onButtonClick(buttonProps.name)}
         />
       ))}
-    </div>
+    </Card>
   );
 };

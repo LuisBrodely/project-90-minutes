@@ -1,12 +1,16 @@
-
-import { useRouter } from 'next/navigation';
+import { Header } from './components/Header';
+import Form from './components/Form';
+import { Card } from '@/components/ui/card';
 
 const PackageShipmentsPage = () => {
   return (
-    <div>
-      Shipments
+    <div className='mx-28'>
+      <Header />
+      <Card>
+        <Form />
+      </Card>
     </div>
   )
 }
 
-export default PackageShipmentsPage
+export default PackageShipmentsPage;

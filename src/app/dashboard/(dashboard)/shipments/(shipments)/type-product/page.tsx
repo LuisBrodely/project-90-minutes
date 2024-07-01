@@ -1,17 +1,18 @@
 "use client"
-
-import { Button } from '@/components/ui/button'
-import { useRouter } from 'next/navigation'
-import React from 'react'
+import DirectionDetails from "../../components/DirectionDetails";
+import { Header } from "./components/Header";
+import ProductData from "./components/ProductData";
 
 const PackageTypePage = () => {
-
   return (
-    <div>
-      <h1>Typo de producto</h1>
-      <Button>Ir a fecha</Button>
+    <div className='mx-28'>
+      <Header />
+      <div>
+        <DirectionDetails/>
+        <ProductData />
+      </div>
     </div>
   )
 }
 
-export default PackageTypePage
+export default PackageTypePage;
